@@ -1,20 +1,3 @@
-require.config {
-  baseUrl: "/assets/js"
-  paths:
-    jquery: 'vendor/jquery'
-    lodash: 'vendor/lodash'
-    backbone: 'vendor/backbone'
-    handlebars: 'vendor/handlebars'
-  shim:
-    handlebars:
-      exports: "Handlebars"
-    lodash:
-      exports: "_"
-    backbone:
-      deps: ['lodash', 'jquery']
-      exports: 'Backbone'
-}
-
 define ['backbone', 'jquery', 'router', 'config', 'helpers/template-loader'], (Backbone, $, AppRouter, AppConfig) ->
   new AppRouter
 

@@ -4,7 +4,6 @@ define ['backbone', 'jquery', 'module', 'views/app' ], (Backbone, $, module, App
 
     routes:
       '': 'home'
-      'about': 'about'
 
     initialize: ->
       @.bind 'all', @on_route, @
@@ -15,19 +14,11 @@ define ['backbone', 'jquery', 'module', 'views/app' ], (Backbone, $, module, App
         @current_view = null
 
     home: ->
-      console.log 'home'
+      @current_view = new AppView()
 
-      # @current_view = new AppView()
-
-      # @show @current_view
-
-    # active_game: ->
-    #   @current_view = new GameView.ActiveGameView()
-
-    #   @show @current_view
+      @show @current_view
 
     show: (view) ->
-      # $('#app').append view.el
       $('#app').html view.render().$el.html()
 
   module.exports = AppRouter

@@ -1,5 +1,4 @@
-define ['backbone', 'jquery', 'module', 'handlebars', 'views/base'],
-  (Backbone, $, module, Handlebars, BaseView) ->
+define ['backbone', 'jquery', 'module', 'handlebars', 'views/base'], (Backbone, $, module, Handlebars, BaseView) ->
   class AppView extends BaseView
     @template: null
 

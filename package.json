@@ -6,7 +6,8 @@
     "grunt-mocha": "*",
     "grunt-coffee": "*",
     "grunt-compass": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "grunt-contrib-requirejs": "*"
   },
   "devDependencies": { }
 }

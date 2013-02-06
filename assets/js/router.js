@@ -15,8 +15,7 @@
       AppRouter.prototype.current_view = null;
 
       AppRouter.prototype.routes = {
-        '': 'home',
-        'about': 'about'
+        '': 'home'
       };
 
       AppRouter.prototype.initialize = function() {
@@ -31,7 +30,8 @@
       };
 
       AppRouter.prototype.home = function() {
-        return console.log('home');
+        this.current_view = new AppView();
+        return this.show(this.current_view);
       };
 
       AppRouter.prototype.show = function(view) {

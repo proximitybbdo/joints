@@ -78,6 +78,18 @@ module.exports = function(grunt) {
       },
     },
 
+    requirejs: {
+      compile: {
+        options: {
+          mainConfigFile: 'assets/js/build.js',
+          baseUrl: "assets/js",
+          name: "main",
+          include: ['build'],
+          out: 'assets/js/main.min.js'
+        }
+      }
+    },
+
     mocha: {
       index: ['test/browser/index.html'],
       mocha: {
@@ -104,7 +116,7 @@ module.exports = function(grunt) {
         files: [
           'assets/**/*.coffee',
           'assets/**/*.sass',
-          ],
+        ],
         tasks: 'coffee:app'
       }
     },
@@ -114,9 +126,11 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha');
   grunt.loadNpmTasks('grunt-coffee');
   grunt.loadNpmTasks('grunt-compass');
+  grunt.loadNpmTasks('grunt-contrib-requirejs');
   
   // Default task.
   grunt.registerTask('default', 'coffee:app compass');
+  grunt.registerTask('production', 'default requirejs');
   grunt.registerTask('test', 'coffee:spec concat:spec mocha');
   grunt.registerTask('test-watch', 'mocha watch:test');
 };
