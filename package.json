@@ -1,0 +1,12 @@
+{
+  "author": "BBDO",
+  "name": "PROJECTNAME",
+  "version": "0.0.1",
+  "dependencies": {
+    "grunt-mocha": "*",
+    "grunt-coffee": "*",
+    "grunt-compass": "*",
+    "mocha": "*"
+  },
+  "devDependencies": { }
+}
