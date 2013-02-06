@@ -1,7 +1,7 @@
 (function() {
 
   define(['backbone', 'jquery', 'router', 'config', 'helpers/template-loader'], function(Backbone, $, AppRouter, AppConfig) {
-    new AppRouter;
+    new AppRouter();
     Backbone.history.start({
       pushState: true
     });

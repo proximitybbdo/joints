@@ -1,23 +1,54 @@
 (function() {
-  var DetailView,
-    __hasProp = {}.hasOwnProperty,
+  var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['backbone', 'jquery', 'module', 'handlebars', 'views/base', 'models/base'], function(Backbone, $, module, Handlebars, BaseView, BaseModel) {}, DetailView = (function(_super) {
+  define(['backbone', 'jquery', 'module', 'handlebars', 'views/base', 'views/user-list', 'collections/userlist', 'models/base'], function(Backbone, $, module, Handlebars, BaseView, UserListView, UserList, BaseModel) {
+    var DetailView;
+    DetailView = (function(_super) {
 
-    __extends(DetailView, _super);
+      __extends(DetailView, _super);
 
-    function DetailView() {
-      return DetailView.__super__.constructor.apply(this, arguments);
-    }
+      function DetailView() {
+        return DetailView.__super__.constructor.apply(this, arguments);
+      }
 
-    DetailView.prototype.render = function() {
-      this.$el.html(Handlebars.getTemplate('detail'));
-      return this;
-    };
+      DetailView.template = null;
 
-    return DetailView;
+      DetailView.prototype.events = {
+        "keypress #add": "add_user"
+      };
 
-  })(BaseView), module.exports = DetailView);
+      DetailView.prototype.initialize = function() {
+        var _ref;
+        if ((_ref = window.userlist) == null) {
+          window.userlist = new UserList;
+        }
+        return this.template = Handlebars.getTemplate('detail');
+      };
+
+      DetailView.prototype.render = function() {
+        this.$el.html(this.template);
+        this.userlist = new UserListView({
+          el: this.$el.find('#userlist')
+        });
+        this.$el.append(this.userlist.render().el);
+        return this;
+      };
+
+      DetailView.prototype.add_user = function(e) {
+        if (e.which !== 13 || !$('#add').val().trim()) {
+          return;
+        }
+        window.userlist.add({
+          username: this.$el.find('#add').val()
+        });
+        return this.$el.find('#add').val('');
+      };
+
+      return DetailView;
+
+    })(BaseView);
+    return module.exports = DetailView;
+  });
 
 }).call(this);

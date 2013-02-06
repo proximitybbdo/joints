@@ -13,7 +13,8 @@
       }
 
       BaseModel.prototype.defaults = {
-        foo: 'bar'
+        foo: 'bar',
+        count: 1
       };
 
       return BaseModel;

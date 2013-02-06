@@ -4,5 +4,5 @@ define ['backbone', 'module'], (Backbone, module) ->
       @undelegateEvents()
       @$el.empty()
       @
-
+      
   module.exports = BaseView

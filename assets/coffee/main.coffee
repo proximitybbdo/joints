@@ -1,5 +1,5 @@
 define ['backbone', 'jquery', 'router', 'config', 'helpers/template-loader'], (Backbone, $, AppRouter, AppConfig) ->
-  new AppRouter
+  new AppRouter()
 
   # kickoff backbone
   Backbone.history.start({pushState: true})

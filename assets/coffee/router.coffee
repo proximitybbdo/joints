@@ -1,24 +1,28 @@
-define ['backbone', 'jquery', 'module', 'views/app' ], (Backbone, $, module, AppView) ->
+define ['backbone', 'jquery', 'module',
+  'views/home',
+  'views/detail' ], (Backbone, $, module, HomeView, DetailView) ->
   class AppRouter extends Backbone.Router
     current_view: null
 
     routes:
       '': 'home'
+      'detail': 'detail'
 
     initialize: ->
-      @.bind 'all', @on_route, @
-
-    on_route: (ref) ->
-      if !!@current_view
-        @current_view.remove()
-        @current_view = null
+      @
 
     home: ->
-      @current_view = new AppView()
+      @show new HomeView
 
-      @show @current_view
+    detail: ->
+      # @show new DetailView({el: $("#app")})
+      @show new DetailView
 
     show: (view) ->
-      $('#app').html view.render().$el.html()
+      if !!@current_view
+        @current_view.remove()
+
+      @current_view = view
+      $('#app').html @current_view.render().el
 
   module.exports = AppRouter

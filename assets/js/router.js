@@ -2,7 +2,7 @@
   var __hasProp = {}.hasOwnProperty,
     __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
 
-  define(['backbone', 'jquery', 'module', 'views/app'], function(Backbone, $, module, AppView) {
+  define(['backbone', 'jquery', 'module', 'views/home', 'views/detail'], function(Backbone, $, module, HomeView, DetailView) {
     var AppRouter;
     AppRouter = (function(_super) {
 
@@ -15,27 +15,28 @@
       AppRouter.prototype.current_view = null;
 
       AppRouter.prototype.routes = {
-        '': 'home'
+        '': 'home',
+        'detail': 'detail'
       };
 
       AppRouter.prototype.initialize = function() {
-        return this.bind('all', this.on_route, this);
-      };
-
-      AppRouter.prototype.on_route = function(ref) {
-        if (!!this.current_view) {
-          this.current_view.remove();
-          return this.current_view = null;
-        }
+        return this;
       };
 
       AppRouter.prototype.home = function() {
-        this.current_view = new AppView();
-        return this.show(this.current_view);
+        return this.show(new HomeView);
+      };
+
+      AppRouter.prototype.detail = function() {
+        return this.show(new DetailView);
       };
 
       AppRouter.prototype.show = function(view) {
-        return $('#app').html(view.render().$el.html());
+        if (!!this.current_view) {
+          this.current_view.remove();
+        }
+        this.current_view = view;
+        return $('#app').html(this.current_view.render().el);
       };
 
       return AppRouter;
