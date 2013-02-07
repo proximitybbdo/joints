@@ -12,13 +12,12 @@
         return UserListView.__super__.constructor.apply(this, arguments);
       }
 
-      UserListView.userlist = null;
+      UserListView.user_list_items = null;
 
       UserListView.prototype.initialize = function() {
-        _.bindAll(this, 'add_model');
-        _.bindAll(this, 'add_all_models');
-        window.userlist.bind('add', this.add_model);
-        return window.userlist.bind('reset', this.add_all_models);
+        this.bind(window.userlist, 'add', this.add_model);
+        this.bind(window.userlist, 'reset', this.add_all_models);
+        return this.user_list_items = [];
       };
 
       UserListView.prototype.render = function() {
@@ -26,12 +25,19 @@
         return this;
       };
 
+      UserListView.prototype.on_kill = function() {
+        return _.each(this.user_list_items, function(item) {
+          return item.remove();
+        });
+      };
+
       UserListView.prototype.add_model = function(model) {
-        var html, view;
-        view = new UserListItemView({
+        var html, item;
+        item = new UserListItemView({
           model: model
         });
-        html = view.render().el;
+        this.user_list_items.push(item);
+        html = item.render().el;
         return this.$el.append(html);
       };
 

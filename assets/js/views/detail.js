@@ -14,6 +14,8 @@
 
       DetailView.template = null;
 
+      DetailView.userlist = null;
+
       DetailView.prototype.events = {
         "keypress #add": "add_user"
       };
@@ -33,6 +35,10 @@
         });
         this.$el.append(this.userlist.render().el);
         return this;
+      };
+
+      DetailView.prototype.on_kill = function() {
+        return this.userlist.remove();
       };
 
       DetailView.prototype.add_user = function(e) {

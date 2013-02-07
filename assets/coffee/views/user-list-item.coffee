@@ -11,4 +11,7 @@ define ['backbone', 'jquery', 'module', 'handlebars',
       @$el.html @template @model.toJSON()
       @
 
+    on_kill: ->
+      console.log 'UserListItemView::on_kill'
+
   module.exports = UserListItemView

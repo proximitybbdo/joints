@@ -6,6 +6,7 @@ define ['backbone', 'jquery', 'module', 'handlebars',
   class DetailView extends BaseView
 
     @template: null
+    @userlist: null
 
     events:
       "keypress #add": "add_user"
@@ -25,6 +26,9 @@ define ['backbone', 'jquery', 'module', 'handlebars',
       @userlist = new UserListView({el: @$el.find('#userlist')})
       @$el.append @userlist.render().el
       @
+
+    on_kill: ->
+      @userlist.remove()
 
     add_user: (e) ->
       if(e.which != 13 || !$('#add').val().trim())

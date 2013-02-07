@@ -8,14 +8,34 @@
 
       __extends(BaseView, _super);
 
-      function BaseView() {
-        return BaseView.__super__.constructor.apply(this, arguments);
+      function BaseView(options) {
+        this.bindings = [];
+        BaseView.__super__.constructor.call(this, options);
       }
 
       BaseView.prototype.remove = function() {
+        if (this.on_kill) {
+          this.on_kill();
+        }
+        this.unbind_all;
         this.undelegateEvents();
-        this.$el.empty();
-        return this;
+        return this.$el.empty();
+      };
+
+      BaseView.prototype.bind = function(model, event, callback) {
+        model.bind(event, callback, this);
+        return this.bindings.push({
+          model: model,
+          event: event,
+          callback: callback
+        });
+      };
+
+      BaseView.prototype.unbind_all = function() {
+        _.each(this.bindings, function(binding) {
+          return binding.model.unbind(binding.event, binding.callback);
+        });
+        return this.bindings = [];
       };
 
       return BaseView;

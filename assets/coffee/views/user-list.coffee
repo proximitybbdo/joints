@@ -3,29 +3,29 @@ define ['backbone', 'jquery', 'module', 'handlebars',
   'views/user-list-item'], (Backbone, $, module, Handlebars, BaseView, UserListItemView) ->
   class UserListView extends BaseView
 
-    # illustrating nested view
-    @userlist: null
+    @user_list_items: null
 
     initialize: ->
-      # make sure that 'this' in the add_model function
-      # refers to the UserListView
-      # Alternatively, you can add a third param to the
-      # bind function on the object you are listening
-      _.bindAll(@, 'add_model')
-      _.bindAll(@, 'add_all_models')
-
       # events
-      # window.userlist.bind 'add', @add_model, @ # optional 'this' param
-      window.userlist.bind 'add', @add_model
-      window.userlist.bind 'reset', @add_all_models
+      @bind window.userlist, 'add', @add_model
+      @bind window.userlist, 'reset', @add_all_models
+
+      @user_list_items = []
 
     render: ->
       @$el.html Handlebars.getTemplate 'user-list'
       @
 
+    on_kill: ->
+      _.each @user_list_items, (item) ->
+        item.remove()
+
     add_model: (model) ->
-      view = new UserListItemView {model: model}
-      html = view.render().el
+      item = new UserListItemView {model: model}
+
+      @user_list_items.push item
+
+      html = item.render().el
       @$el.append html
 
     add_all_models: (model) ->

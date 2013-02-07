@@ -21,6 +21,10 @@
         return this;
       };
 
+      UserListItemView.prototype.on_kill = function() {
+        return console.log('UserListItemView::on_kill');
+      };
+
       return UserListItemView;
 
     })(BaseView);
