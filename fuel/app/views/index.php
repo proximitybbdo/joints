@@ -1,0 +1,2 @@
+Hallo!
+<?php echo $doodle; ?>
