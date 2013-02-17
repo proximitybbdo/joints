@@ -2,6 +2,7 @@
 
   define(['backbone', 'jquery', 'router', 'config', 'helpers/template-loader'], function(Backbone, $, AppRouter, AppConfig) {
     new AppRouter();
+    Backbone.emulateJSON = true;
     Backbone.history.start({
       pushState: true
     });

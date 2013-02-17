@@ -14,7 +14,7 @@ define ['backbone', 'jquery', 'module', 'handlebars',
     initialize: ->
       window.userlist ?= new UserList
 
-      # window.userlist.fetch()
+      window.userlist.fetch()
 
       @template = Handlebars.getTemplate 'detail'
 
@@ -34,7 +34,8 @@ define ['backbone', 'jquery', 'module', 'handlebars',
       if(e.which != 13 || !$('#add').val().trim())
         return
 
-      window.userlist.add {username: @$el.find('#add').val()}
+      window.userlist.create {username: @$el.find('#add').val()}
+
       @$el.find('#add').val('')
 
   module.exports = DetailView

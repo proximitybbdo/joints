@@ -12,6 +12,8 @@
         return UserList.__super__.constructor.apply(this, arguments);
       }
 
+      UserList.prototype.url = '/users';
+
       UserList.prototype.model = BaseModel;
 
       return UserList;

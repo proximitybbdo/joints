@@ -25,6 +25,7 @@
         if ((_ref = window.userlist) == null) {
           window.userlist = new UserList;
         }
+        window.userlist.fetch();
         return this.template = Handlebars.getTemplate('detail');
       };
 
@@ -45,7 +46,7 @@
         if (e.which !== 13 || !$('#add').val().trim()) {
           return;
         }
-        window.userlist.add({
+        window.userlist.create({
           username: this.$el.find('#add').val()
         });
         return this.$el.find('#add').val('');

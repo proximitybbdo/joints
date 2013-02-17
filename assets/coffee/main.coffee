@@ -2,6 +2,7 @@ define ['backbone', 'jquery', 'router', 'config', 'helpers/template-loader'], (B
   new AppRouter()
 
   # kickoff backbone
+  Backbone.emulateJSON = true
   Backbone.history.start({pushState: true})
 
   $(document).on "click", "a[href]:not([data-bypass])", (e) ->
