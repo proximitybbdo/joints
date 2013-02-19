@@ -14,8 +14,6 @@
 
       UserListItemView.prototype.tagName = 'li';
 
-      UserListItemView.prototype.$input = null;
-
       UserListItemView.prototype.events = {
         'click a.edit': 'edit',
         'click a.delete': 'delete',
@@ -54,10 +52,6 @@
       UserListItemView.prototype["delete"] = function(e) {
         e.preventDefault();
         return this.model.destroy();
-      };
-
-      UserListItemView.prototype.on_kill = function() {
-        return console.log('UserListItemView::on_kill');
       };
 
       return UserListItemView;

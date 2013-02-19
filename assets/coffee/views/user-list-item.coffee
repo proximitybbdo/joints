@@ -6,8 +6,6 @@ define ['backbone', 'jquery', 'module', 'handlebars',
   class UserListItemView extends BaseView
     tagName: 'li'
 
-    $input: null
-
     events:
       'click a.edit': 'edit'
       'click a.delete': 'delete'
@@ -44,8 +42,5 @@ define ['backbone', 'jquery', 'module', 'handlebars',
       e.preventDefault()
 
       @model.destroy()
-
-    on_kill: ->
-      console.log 'UserListItemView::on_kill'
 
   module.exports = UserListItemView
