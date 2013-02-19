@@ -2,6 +2,7 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
+    pkg: grunt.file.readJSON('package.json'),
 
     compass: {
       dist: {
@@ -15,13 +16,15 @@ module.exports = function(grunt) {
 
     coffee: {
       app: {
-        src: ['assets/coffee/**/*.coffee'],
-        dest: 'assets/js',
-        options: {
+        files: [{
+          expand: true,     // Enable dynamic expansion.
           bare: false,
           preserve_dirs: true,
-          base_path: 'assets/coffee'
-        }
+          cwd: 'assets/coffee/',      // Src matches are relative to this path.
+          src: ['**/*.coffee'], // Actual pattern(s) to match.
+          dest: 'assets/js',   // Destination path prefix.
+          ext: '.js',   // Dest filepaths will have this extension.
+        }]
       },
 
       spec: {
@@ -123,14 +126,14 @@ module.exports = function(grunt) {
 
   });
 
-  grunt.loadNpmTasks('grunt-mocha');
-  grunt.loadNpmTasks('grunt-coffee');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
+  grunt.loadNpmTasks('grunt-contrib-coffee');
   grunt.loadNpmTasks('grunt-compass');
   grunt.loadNpmTasks('grunt-contrib-requirejs');
   
   // Default task.
-  grunt.registerTask('default', 'coffee:app compass');
-  grunt.registerTask('production', 'default requirejs');
-  grunt.registerTask('test', 'coffee:spec concat:spec mocha');
-  grunt.registerTask('test-watch', 'mocha watch:test');
+  grunt.registerTask('default', ['coffee:app', 'compass']);
+  grunt.registerTask('production', ['default', 'requirejs']);
+  grunt.registerTask('test', ['coffee:spec', 'concat:spec mocha']);
+  grunt.registerTask('test-watch', ['mocha', 'watch:test']);
 };

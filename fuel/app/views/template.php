@@ -21,7 +21,12 @@
 
     <div id="app" class="container"><?= $content; ?></div>
 
-    <?= Asset::js('vendor/require.js', array('data-main' => 'assets/js/build')); ?>
+    <?php if(Fuel::$env === 'PRODUCTION'): ?>
+      <?= Asset::js('vendor/require.js', array('data-main' => 'assets/js/main.min')); ?>
+    <?php else: ?>
+      <?= Asset::js('vendor/require.js', array('data-main' => 'assets/js/build')); ?>
+    <?php endif; ?>
+
     <!-- <script data-main='/assets/js/build' src="/assets/js/vendor/require.js"></script> -->
     <!-- <script data-main='/assets/js/main.min' src="/assets/js/vendor/require.js"></script> -->
 

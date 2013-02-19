@@ -4,10 +4,12 @@
   "version": "0.0.1",
   "dependencies": {
     "grunt-mocha": "*",
-    "grunt-coffee": "*",
+    "grunt-contrib-coffee": "*",
     "grunt-compass": "*",
     "mocha": "*",
     "grunt-contrib-requirejs": "*"
   },
-  "devDependencies": { }
+  "devDependencies": {
+    "grunt": "~0.4.0"
+  }
 }
