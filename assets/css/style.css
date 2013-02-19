@@ -1,1 +1,13 @@
 @import url(bootstrap.css);
+/* line 5, style.sass */
+#userlist li div.edit {
+  display: none;
+}
+/* line 9, style.sass */
+#userlist li div.show a {
+  display: none;
+}
+/* line 13, style.sass */
+#userlist li .show:hover a {
+  display: inline;
+}

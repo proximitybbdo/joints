@@ -19,7 +19,7 @@
         }
         this.unbind_all;
         this.undelegateEvents();
-        return this.$el.empty();
+        return this.$el.remove();
       };
 
       BaseView.prototype.bind = function(model, event, callback) {

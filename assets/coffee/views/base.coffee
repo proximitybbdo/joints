@@ -12,7 +12,7 @@ define ['backbone', 'module'], (Backbone, module) ->
         
       @unbind_all
       @undelegateEvents()
-      @$el.empty()
+      @$el.remove()
 
     bind: (model, event, callback) ->
       model.bind event, callback, @

@@ -1,5 +1,5 @@
 <?php
   
 return array(
-	'profiling'  => true,
+	'profiling'  => false,
 );

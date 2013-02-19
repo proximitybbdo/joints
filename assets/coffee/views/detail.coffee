@@ -4,9 +4,7 @@ define ['backbone', 'jquery', 'module', 'handlebars',
   'collections/userlist',
   'models/base'], (Backbone, $, module, Handlebars, BaseView, UserListView, UserList, BaseModel) ->
   class DetailView extends BaseView
-
     @template: null
-    @userlist: null
 
     events:
       "keypress #add": "add_user"

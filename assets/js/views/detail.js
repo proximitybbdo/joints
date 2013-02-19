@@ -14,8 +14,6 @@
 
       DetailView.template = null;
 
-      DetailView.userlist = null;
-
       DetailView.prototype.events = {
         "keypress #add": "add_user"
       };

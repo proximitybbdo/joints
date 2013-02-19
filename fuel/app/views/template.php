@@ -19,7 +19,10 @@
   </head>
   <body>
 
-    <div id="app" class="container"><?= $content; ?></div>
+    <div id="app" class="container">
+      <div id="home"></div>
+      <div id="detail"></div>
+    </div>
 
     <?php if(Fuel::$env === 'PRODUCTION'): ?>
       <?= Asset::js('vendor/require.js', array('data-main' => 'assets/js/main.min')); ?>

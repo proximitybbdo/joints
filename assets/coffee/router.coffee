@@ -15,7 +15,6 @@ define ['backbone', 'jquery', 'module',
       @show new HomeView
 
     detail: ->
-      # @show new DetailView({el: $("#app")})
       @show new DetailView
 
     show: (view) ->

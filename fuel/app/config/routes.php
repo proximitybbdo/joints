@@ -5,9 +5,8 @@ return array(
 
   'api/users' => array(
     array('GET', new Route('users/index')),
-    array('POST', new Route('users/create'))
+    array('POST', new Route('users/index')),
   ),
-  'api/users/(:num)' => array(
-    array('GET', new Route('users/user/$1')),
-  ),
+
+  'api/users/(:num)' => 'users/user/$1',
 );

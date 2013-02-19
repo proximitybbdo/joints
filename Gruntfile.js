@@ -112,7 +112,7 @@ module.exports = function(grunt) {
         files: [
           'assets/css/**/*.{scss,sass}'
         ],
-        tasks: 'compass reload'
+        tasks: 'compass'
       },
 
       app: {
