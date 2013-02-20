@@ -1,11 +1,8 @@
 <?php
 
-class Controller_Users extends Controller_Rest {
-
-  protected $format = 'json';
-
+class Controller_Users extends Controller_BaseRest 
+{
   public function get_index() {
-
     // backbone expects response to be
     // array of models, not an indexed
     // array of models. Fuel outputs like
@@ -28,25 +25,23 @@ class Controller_Users extends Controller_Rest {
   }
 
   public function post_index() {
-    $request = file_get_contents('php://input');
-    $request = json_decode($request);
+    $request = $this->get_request();
 
     Model_User::forge(array(
       'username' => $request->username,
       'email' => $request->email
     ))->save();
    
-    return 1;
+    return $this->response(1);
   }
 
   public function put_user($id) {
-    $request = file_get_contents('php://input');
-    $request = json_decode($request);
+    $request = $this->get_request();
 
     $user = Model_User::find($id);
 
     if(is_null($user)) {
-      return 'user_not_found';
+      return $this->response('user_not_found');
     } else {
       $user->username = $request->username;
       $user->email = $request->email;
@@ -55,15 +50,16 @@ class Controller_Users extends Controller_Rest {
   }
 
   public function delete_user($id) {
-    $request = file_get_contents('php://input');
-    $request = json_decode($request);
+    $request = $this->get_request();
 
     $user = Model_User::find($id);
 
     if(is_null($user)) {
-      return 'user_not_found';
+      return $this->response('user_not_found');
     } else {
       $user->delete();
+
+      return $this->response(1);
     }
   }
 
