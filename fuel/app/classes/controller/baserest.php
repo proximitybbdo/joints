@@ -7,5 +7,7 @@ class Controller_BaseRest extends Controller_Rest
   protected function get_request() {
     $request = file_get_contents('php://input');
     $request = json_decode($request);
+
+    return $request;
   }
 }
